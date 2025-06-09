@@ -3,52 +3,190 @@ import sys
 import re
 from openai import OpenAI
 
+def detect_language(text):
+    """
+    Detect language from text using character analysis
+    """
+    # Check for common characters in different languages
+    arabic_chars = "أبتثجحخدذرزسشصضطظعغفقكلمنهويءة"
+    french_chars = "éèêëàâäôöùûüÿçœæ"
+    spanish_chars = "áéíóúüñ¿¡"
+    
+    # Count characters from each language
+    arabic_count = sum(1 for char in text if char in arabic_chars)
+    french_count = sum(1 for char in text if char in french_chars)
+    spanish_count = sum(1 for char in text if char in spanish_chars)
+    
+    # Determine language based on character count
+    if arabic_count > 0:
+        return "arabic"
+    elif french_count > 0:
+        return "french"
+    elif spanish_count > 0:
+        return "spanish"
+    else:
+        return "english"  # Default to English
+
 def generate_mission(prompt, language="auto"):
     """
     Generate a job mission using OpenRouter API with Qwen2.5
     """
     try:
+        # Auto-detect language if set to auto
+        if language == "auto":
+            detected_lang = detect_language(prompt)
+        else:
+            detected_lang = language
+            
         # Initialize OpenAI client with OpenRouter base URL and API key
         client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
             api_key="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",
         )
         
-        # Create system prompt that works for any language
-        system_prompt = """You are an assistant specialized in creating freelance job missions.
-From the user's input, generate a complete job mission in the SAME LANGUAGE as the input.
-ALL output fields, labels, and values must be in the SAME LANGUAGE as the input.
+        # Create system prompt based on detected language
+        if detected_lang == "french":
+            system_prompt = """Tu es un assistant spécialisé dans la création de fiches missions freelance.
+À partir d'une brève description, tu dois générer une fiche mission complète.
+IMPORTANT: Toute la sortie doit être en français, y compris tous les titres, champs et valeurs.
+Réponds UNIQUEMENT au format JSON suivant (sans commentaires) :
 
+{
+  "title": "Titre concis et accrocheur de la mission",
+  "description": "Description détaillée incluant contexte et objectifs",
+  "country": "Nom du pays en français",
+  "city": "Nom de la ville en français",
+  "workMode": "Un parmi: REMOTE, ONSITE, HYBRID",
+  "duration": "Durée (nombre)",
+  "durationType": "Unité de durée (MOIS, ANNEE)",
+  "startImmediately": true/false,
+  "startDate": "Date de début en format yyyy-MM-dd (si startImmediately = false)",
+  "experienceYear": "Un parmi: 0-3, 3-7, 7-12, 12+",
+  "contractType": "Un parmi: FORFAIT, REGIE",
+  "estimatedDailyRate": "Taux journalier moyen en euros (nombre)",
+  "domain": "Domaine d'activité principal",
+  "position": "Intitulé du poste/fonction",
+  "requiredExpertises": ["expertise1", "expertise2", ...],
+  "uiLabels": {
+    "description": "Description",
+    "expertise": "Expertises Requises",
+    "details": "Détails de la Mission",
+    "position": "Poste",
+    "location": "Lieu",
+    "workMode": "Mode de Travail",
+    "duration": "Durée",
+    "experience": "Expérience",
+    "contractType": "Type de Contrat",
+    "dailyRate": "Taux Journalier",
+    "domain": "Domaine"
+  }
+}"""
+        elif detected_lang == "arabic":
+            system_prompt = """أنت مساعد متخصص في إنشاء مهام العمل الحر.
+من وصف موجز، يجب عليك إنشاء مهمة عمل كاملة.
+مهم: يجب أن تكون جميع المخرجات باللغة العربية، بما في ذلك جميع العناوين والحقول والقيم.
+الرد فقط بتنسيق JSON التالي (بدون تعليقات):
+
+{
+  "title": "عنوان موجز وجذاب للمهمة",
+  "description": "وصف مفصل يتضمن السياق والأهداف",
+  "country": "اسم البلد بالعربية",
+  "city": "اسم المدينة بالعربية",
+  "workMode": "واحد من: عن بعد، في الموقع، هجين",
+  "duration": "المدة (رقم)",
+  "durationType": "وحدة المدة (شهر، سنة)",
+  "startImmediately": true/false,
+  "startDate": "تاريخ البدء بتنسيق yyyy-MM-dd (إذا كان startImmediately = false)",
+  "experienceYear": "واحد من: 0-3، 3-7، 7-12، +12",
+  "contractType": "واحد من: ثابت، بالساعة",
+  "estimatedDailyRate": "متوسط المعدل اليومي باليورو (رقم)",
+  "domain": "مجال النشاط الرئيسي",
+  "position": "المسمى الوظيفي",
+  "requiredExpertises": ["خبرة1", "خبرة2", ...],
+  "uiLabels": {
+    "description": "الوصف",
+    "expertise": "الخبرات المطلوبة",
+    "details": "تفاصيل المهمة",
+    "position": "المنصب",
+    "location": "الموقع",
+    "workMode": "نمط العمل",
+    "duration": "المدة",
+    "experience": "الخبرة",
+    "contractType": "نوع العقد",
+    "dailyRate": "المعدل اليومي",
+    "domain": "المجال"
+  }
+}"""
+        elif detected_lang == "spanish":
+            system_prompt = """Eres un asistente especializado en la creación de misiones freelance.
+A partir de una breve descripción, debes generar una misión completa.
+IMPORTANTE: Toda la salida debe estar en español, incluyendo todos los títulos, campos y valores.
+Responde ÚNICAMENTE en el siguiente formato JSON (sin comentarios):
+
+{
+  "title": "Título conciso y atractivo de la misión",
+  "description": "Descripción detallada incluyendo contexto y objetivos",
+  "country": "Nombre del país en español",
+  "city": "Nombre de la ciudad en español",
+  "workMode": "Uno entre: REMOTO, PRESENCIAL, HÍBRIDO",
+  "duration": "Duración (número)",
+  "durationType": "Unidad de duración (MES, AÑO)",
+  "startImmediately": true/false,
+  "startDate": "Fecha de inicio en formato yyyy-MM-dd (si startImmediately = false)",
+  "experienceYear": "Uno entre: 0-3, 3-7, 7-12, 12+",
+  "contractType": "Uno entre: PRECIO FIJO, TIEMPO Y MATERIALES",
+  "estimatedDailyRate": "Tarifa diaria media en euros (número)",
+  "domain": "Dominio de actividad principal",
+  "position": "Título del puesto/función",
+  "requiredExpertises": ["experiencia1", "experiencia2", ...],
+  "uiLabels": {
+    "description": "Descripción",
+    "expertise": "Experiencia Requerida",
+    "details": "Detalles de la Misión",
+    "position": "Posición",
+    "location": "Ubicación",
+    "workMode": "Modo de Trabajo",
+    "duration": "Duración",
+    "experience": "Experiencia",
+    "contractType": "Tipo de Contrato",
+    "dailyRate": "Tarifa Diaria",
+    "domain": "Dominio"
+  }
+}"""
+        else:
+            system_prompt = """You are an assistant specialized in creating freelance job missions.
+From a brief description, you must generate a complete job mission.
+IMPORTANT: All output must be in English, including all titles, fields, and values.
 Respond ONLY in the following JSON format (without comments):
 
 {
-  "title": "Mission title in the input language",
-  "description": "Detailed description in the input language",
-  "country": "Country name in the input language",
-  "city": "City name in the input language",
-  "workMode": "Work mode in the input language",
-  "duration": Number,
-  "durationType": "Duration type in the input language",
+  "title": "Concise and catchy mission title",
+  "description": "Detailed description including context and objectives",
+  "country": "Country name in English",
+  "city": "City name in English",
+  "workMode": "One of: REMOTE, ONSITE, HYBRID",
+  "duration": "Duration (number)",
+  "durationType": "Duration unit (MONTH, YEAR)",
   "startImmediately": true/false,
-  "startDate": "Date in yyyy-MM-dd format if not starting immediately",
-  "experienceYear": "Experience range in the input language",
-  "contractType": "Contract type in the input language",
-  "estimatedDailyRate": Number,
-  "domain": "Domain/industry in the input language",
-  "position": "Position title in the input language",
-  "requiredExpertises": ["Expertise 1 in input language", "Expertise 2 in input language", ...],
+  "startDate": "Start date in yyyy-MM-dd format (if startImmediately = false)",
+  "experienceYear": "One of: 0-3, 3-7, 7-12, 12+",
+  "contractType": "One of: FIXED_PRICE, TIME_AND_MATERIALS",
+  "estimatedDailyRate": "Average daily rate in euros (number)",
+  "domain": "Main activity domain",
+  "position": "Job title/function",
+  "requiredExpertises": ["expertise1", "expertise2", ...],
   "uiLabels": {
-    "description": "Description label in input language",
-    "expertise": "Required expertise label in input language",
-    "details": "Mission details label in input language",
-    "position": "Position label in input language",
-    "location": "Location label in input language",
-    "workMode": "Work mode label in input language",
-    "duration": "Duration label in input language",
-    "experience": "Experience label in input language",
-    "contractType": "Contract type label in input language",
-    "dailyRate": "Daily rate label in input language",
-    "domain": "Domain label in input language"
+    "description": "Description",
+    "expertise": "Required Expertise",
+    "details": "Mission Details",
+    "position": "Position",
+    "location": "Location",
+    "workMode": "Work Mode",
+    "duration": "Duration",
+    "experience": "Experience",
+    "contractType": "Contract Type",
+    "dailyRate": "Daily Rate",
+    "domain": "Domain"
   }
 }"""
         
@@ -67,8 +205,8 @@ Respond ONLY in the following JSON format (without comments):
         - Domain/industry
         
         If any information is missing, use reasonable defaults based on the context.
-        Make sure ALL fields in the response are in the SAME LANGUAGE as the input.
-        Include a "uiLabels" object with all UI labels translated to the input language.
+        Make sure ALL fields in the response are in the SAME LANGUAGE as the system prompt.
+        Include a "uiLabels" object with all UI labels translated to the appropriate language.
         """
         
         # Call the API
@@ -100,20 +238,26 @@ Respond ONLY in the following JSON format (without comments):
                 json_str = response[json_start:json_end]
                 # Parse and format JSON
                 mission_data = json.loads(json_str)
+                # Add detected language to the response
+                mission_data["detectedLanguage"] = detected_lang
                 return json.dumps(mission_data, indent=2)
             else:
                 # Try to parse the entire response as JSON
                 mission_data = json.loads(response)
+                # Add detected language to the response
+                mission_data["detectedLanguage"] = detected_lang
                 return json.dumps(mission_data, indent=2)
         except Exception as e:
             return json.dumps({
                 "error": f"Error parsing JSON: {str(e)}",
-                "raw_response": response
+                "raw_response": response,
+                "detectedLanguage": detected_lang
             })
             
     except Exception as e:
         return json.dumps({
-            "error": f"API Error: {str(e)}"
+            "error": f"API Error: {str(e)}",
+            "detectedLanguage": language if language != "auto" else "english"
         })
 
 # Fallback to a mock implementation if the API fails
@@ -121,43 +265,144 @@ def generate_mock_mission(prompt, language="auto"):
     """
     Generate a mock mission for testing without requiring the API
     """
+    # Auto-detect language if set to auto
+    if language == "auto":
+        detected_lang = detect_language(prompt)
+    else:
+        detected_lang = language
+    
     # Extract technology/skill from prompt
     tech = prompt.split()[0] if prompt else "general"
     
-    # Default UI labels in English
-    ui_labels = {
-        "description": "Description",
-        "expertise": "Required Expertise",
-        "details": "Mission Details",
-        "position": "Position",
-        "location": "Location",
-        "workMode": "Work Mode",
-        "duration": "Duration",
-        "experience": "Experience",
-        "contractType": "Contract Type",
-        "dailyRate": "Daily Rate",
-        "domain": "Domain"
-    }
-    
-    # Create mock mission with default values
-    mock_mission = {
-        "title": f"{tech.title()} Expert Needed",
-        "description": f"## Context\nOur client is looking for a {tech} expert for a development project.\n\n## Responsibilities\n- Develop {tech} solutions\n- Collaborate with team members\n- Deliver high-quality work\n\n## Requirements\n- Experience with {tech}\n- Good communication skills\n- Attention to detail",
-        "country": "United States",
-        "city": "New York",
-        "workMode": "REMOTE",
-        "duration": 3,
-        "durationType": "MONTH",
-        "startImmediately": True,
-        "startDate": "",
-        "experienceYear": "3-7",
-        "contractType": "FIXED_PRICE",
-        "estimatedDailyRate": 400,
-        "domain": "Technology",
-        "position": f"{tech.title()} Specialist",
-        "requiredExpertises": [tech.title(), "Communication", "Project Management"],
-        "uiLabels": ui_labels
-    }
+    # Create mock mission based on detected language
+    if detected_lang == "french":
+        mock_mission = {
+            "title": f"Expert en {tech.title()} Recherché",
+            "description": f"## Contexte\nNotre client recherche un expert en {tech} pour un projet de développement.\n\n## Responsabilités\n- Développer des solutions {tech}\n- Collaborer avec les membres de l'équipe\n- Livrer un travail de haute qualité\n\n## Exigences\n- Expérience avec {tech}\n- Bonnes compétences en communication\n- Souci du détail",
+            "country": "France",
+            "city": "Paris",
+            "workMode": "REMOTE",
+            "duration": 3,
+            "durationType": "MOIS",
+            "startImmediately": True,
+            "startDate": "",
+            "experienceYear": "3-7",
+            "contractType": "FORFAIT",
+            "estimatedDailyRate": 400,
+            "domain": "Technologie",
+            "position": f"Spécialiste {tech.title()}",
+            "requiredExpertises": [tech.title(), "Communication", "Gestion de Projet"],
+            "uiLabels": {
+                "description": "Description",
+                "expertise": "Expertises Requises",
+                "details": "Détails de la Mission",
+                "position": "Poste",
+                "location": "Lieu",
+                "workMode": "Mode de Travail",
+                "duration": "Durée",
+                "experience": "Expérience",
+                "contractType": "Type de Contrat",
+                "dailyRate": "Taux Journalier",
+                "domain": "Domaine"
+            },
+            "detectedLanguage": detected_lang
+        }
+    elif detected_lang == "arabic":
+        mock_mission = {
+            "title": f"مطلوب خبير في {tech.title()}",
+            "description": f"## السياق\nيبحث عميلنا عن خبير في {tech} لمشروع تطوير.\n\n## المسؤوليات\n- تطوير حلول {tech}\n- التعاون مع أعضاء الفريق\n- تقديم عمل عالي الجودة\n\n## المتطلبات\n- خبرة في {tech}\n- مهارات تواصل جيدة\n- الاهتمام بالتفاصيل",
+            "country": "المغرب",
+            "city": "الدار البيضاء",
+            "workMode": "عن بعد",
+            "duration": 3,
+            "durationType": "شهر",
+            "startImmediately": True,
+            "startDate": "",
+            "experienceYear": "3-7",
+            "contractType": "ثابت",
+            "estimatedDailyRate": 400,
+            "domain": "تكنولوجيا",
+            "position": f"متخصص {tech.title()}",
+            "requiredExpertises": [tech.title(), "مهارات التواصل", "إدارة المشاريع"],
+            "uiLabels": {
+                "description": "الوصف",
+                "expertise": "الخبرات المطلوبة",
+                "details": "تفاصيل المهمة",
+                "position": "المنصب",
+                "location": "الموقع",
+                "workMode": "نمط العمل",
+                "duration": "المدة",
+                "experience": "الخبرة",
+                "contractType": "نوع العقد",
+                "dailyRate": "المعدل اليومي",
+                "domain": "المجال"
+            },
+            "detectedLanguage": detected_lang
+        }
+    elif detected_lang == "spanish":
+        mock_mission = {
+            "title": f"Se Busca Experto en {tech.title()}",
+            "description": f"## Contexto\nNuestro cliente busca un experto en {tech} para un proyecto de desarrollo.\n\n## Responsabilidades\n- Desarrollar soluciones de {tech}\n- Colaborar con los miembros del equipo\n- Entregar trabajo de alta calidad\n\n## Requisitos\n- Experiencia con {tech}\n- Buenas habilidades de comunicación\n- Atención al detalle",
+            "country": "España",
+            "city": "Madrid",
+            "workMode": "REMOTO",
+            "duration": 3,
+            "durationType": "MES",
+            "startImmediately": True,
+            "startDate": "",
+            "experienceYear": "3-7",
+            "contractType": "PRECIO FIJO",
+            "estimatedDailyRate": 400,
+            "domain": "Tecnología",
+            "position": f"Especialista en {tech.title()}",
+            "requiredExpertises": [tech.title(), "Comunicación", "Gestión de Proyectos"],
+            "uiLabels": {
+                "description": "Descripción",
+                "expertise": "Experiencia Requerida",
+                "details": "Detalles de la Misión",
+                "position": "Posición",
+                "location": "Ubicación",
+                "workMode": "Modo de Trabajo",
+                "duration": "Duración",
+                "experience": "Experiencia",
+                "contractType": "Tipo de Contrato",
+                "dailyRate": "Tarifa Diaria",
+                "domain": "Dominio"
+            },
+            "detectedLanguage": detected_lang
+        }
+    else:
+        mock_mission = {
+            "title": f"{tech.title()} Expert Needed",
+            "description": f"## Context\nOur client is looking for a {tech} expert for a development project.\n\n## Responsibilities\n- Develop {tech} solutions\n- Collaborate with team members\n- Deliver high-quality work\n\n## Requirements\n- Experience with {tech}\n- Good communication skills\n- Attention to detail",
+            "country": "United States",
+            "city": "New York",
+            "workMode": "REMOTE",
+            "duration": 3,
+            "durationType": "MONTH",
+            "startImmediately": True,
+            "startDate": "",
+            "experienceYear": "3-7",
+            "contractType": "FIXED_PRICE",
+            "estimatedDailyRate": 400,
+            "domain": "Technology",
+            "position": f"{tech.title()} Specialist",
+            "requiredExpertises": [tech.title(), "Communication", "Project Management"],
+            "uiLabels": {
+                "description": "Description",
+                "expertise": "Required Expertise",
+                "details": "Mission Details",
+                "position": "Position",
+                "location": "Location",
+                "workMode": "Work Mode",
+                "duration": "Duration",
+                "experience": "Experience",
+                "contractType": "Contract Type",
+                "dailyRate": "Daily Rate",
+                "domain": "Domain"
+            },
+            "detectedLanguage": detected_lang
+        }
     
     return json.dumps(mock_mission, indent=2)
 

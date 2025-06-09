@@ -230,8 +230,26 @@
                 domain: "Domaine"
             };
             
+            // Language-specific placeholders
+            const placeholders = {
+                french: "Exemple: Développeur React avec expertise en TypeScript, budget 8000, city Paris, country France",
+                english: "Example: Java developer with expertise in Spring Boot, budget 10000, city London, country UK",
+                arabic: "مثال: مطور جافا مع خبرة في سبرينج بوت، ميزانية 10000، المدينة الرياض، البلد السعودية",
+                spanish: "Ejemplo: Desarrollador Java con experiencia en Spring Boot, presupuesto 10000, ciudad Madrid, país España"
+            };
+            
+            // Update placeholder based on selected language
+            document.getElementById('language').addEventListener('change', function() {
+                const selectedLanguage = this.value;
+                if (selectedLanguage !== 'auto') {
+                    document.getElementById('prompt').placeholder = placeholders[selectedLanguage] || placeholders.french;
+                } else {
+                    document.getElementById('prompt').placeholder = placeholders.french;
+                }
+            });
+            
             // Update UI labels based on response
-            function updateUILabels(labels) {
+            function updateUILabels(labels, detectedLanguage) {
                 const uiLabels = labels || defaultLabels;
                 
                 document.getElementById('descriptionLabel').textContent = uiLabels.description || defaultLabels.description;
@@ -245,6 +263,17 @@
                 document.getElementById('contractTypeLabel').textContent = uiLabels.contractType || defaultLabels.contractType;
                 document.getElementById('dailyRateLabel').textContent = uiLabels.dailyRate || defaultLabels.dailyRate;
                 document.getElementById('domainLabel').textContent = uiLabels.domain || defaultLabels.domain;
+                
+                // Update language dropdown to match detected language
+                if (detectedLanguage) {
+                    const languageSelect = document.getElementById('language');
+                    for (let i = 0; i < languageSelect.options.length; i++) {
+                        if (languageSelect.options[i].value === detectedLanguage) {
+                            languageSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
             }
             
             // Set default French labels on page load
@@ -295,12 +324,8 @@
                     
                     generatedJson = data;
                     
-                    // Update UI labels from response or keep French defaults
-                    if (language === 'french' || language === 'auto') {
-                        updateUILabels(defaultLabels);
-                    } else {
-                        updateUILabels(data.uiLabels);
-                    }
+                    // Update UI labels from response
+                    updateUILabels(data.uiLabels, data.detectedLanguage);
                     
                     // Display the mission
                     displayMission(data);

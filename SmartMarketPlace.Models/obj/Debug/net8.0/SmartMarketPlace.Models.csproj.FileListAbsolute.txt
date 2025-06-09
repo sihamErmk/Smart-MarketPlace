@@ -9,3 +9,4 @@ c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\S
 c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\refint\SmartMarketPlace.Models.dll
 c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.pdb
 c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\ref\SmartMarketPlace.Models.dll
+C:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.sourcelink.json

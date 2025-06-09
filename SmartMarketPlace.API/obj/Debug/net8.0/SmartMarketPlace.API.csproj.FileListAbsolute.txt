@@ -36,3 +36,4 @@ c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\refi
 c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.pdb
 c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.genruntimeconfig.cache
 c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\ref\SmartMarketPlace.API.dll
+C:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.sourcelink.json

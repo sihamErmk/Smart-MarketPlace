@@ -76,6 +76,8 @@ Smart MarketPlace utilise le modèle Qwen2.5 via l'API OpenRouter pour générer
    - Interface Web : http://localhost:8001
    - Swagger API : http://localhost:7001/swagger
 
+
+
 ## Points de Terminaison API
 
 ### Générer une Mission
@@ -98,6 +100,32 @@ Smart MarketPlace utilise le modèle Qwen2.5 via l'API OpenRouter pour générer
 4. Consultez les détails de la mission générée
 5. Copiez la sortie JSON si nécessaire
 
+## Exemple d'Utilisation avec les captures d'écran
+
+![Image](https://github.com/user-attachments/assets/c9c53c52-da35-4591-8717-8d7358908e36)
+
+Où vous pouvez entrer une description pour générer une mission :
+
+
+![Image](https://github.com/user-attachments/assets/63312ecd-e4f7-4bf3-a8cb-97fea220d0a3)
+
+Choisissez la langue que vous préférez ou bien le système détecte la langue d'entrée et la marque comme langue d'affichage.
+Et voilà notre mission :
+
+
+![Image](https://github.com/user-attachments/assets/5cb00057-f9ea-43fc-9876-5d273bd278b5)
+
+Où vous pouvez aussi copier la réponse en format JSON.
+
+Un autre exemple en arabe :
+
+![Image](https://github.com/user-attachments/assets/db3ac011-348b-4fcf-85f5-96afc5faa542)
+
+la sortie : 
+
+![Image](https://github.com/user-attachments/assets/c0f74485-69bf-4164-aad7-21034badf2fd)
+
+
 ## Exemple de Sortie
 
 ```json
@@ -112,7 +140,7 @@ Smart MarketPlace utilise le modèle Qwen2.5 via l'API OpenRouter pour générer
   "startImmediately": true,
   "startDate": "",
   "experienceYear": "3-7",
-  "contractType": "FORFAIT",
+  "contractType": "CDI",
   "estimatedDailyRate": 400,
   "domain": "Technologie",
   "position": "Développeur Web Java",
@@ -120,24 +148,8 @@ Smart MarketPlace utilise le modèle Qwen2.5 via l'API OpenRouter pour générer
 }
 ```
 
-## Dépannage
 
-Si vous rencontrez des problèmes :
-
-1. **Erreur de Connexion API**
-   - Assurez-vous que les applications API et Web sont en cours d'exécution
-   - Vérifiez que l'API est accessible à http://localhost:7001
-   - Vérifiez que Python est installé et que les packages requis sont installés
-
-2. **Erreur de Script Python**
-   - Consultez les journaux de l'API pour plus de détails sur l'exécution du script Python
-   - Assurez-vous que la clé API OpenRouter est valide
-   - Vérifiez que les packages Python requis sont installés
-
-3. **Erreur d'Analyse JSON**
-   - Vérifiez les journaux de l'API pour la réponse brute du modèle
-   - Le modèle peut parfois renvoyer un JSON mal formé
 
 ## Licence
 
-Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
+Ce projet est developee par Safae Hammouch et Oumaima Boughdad
