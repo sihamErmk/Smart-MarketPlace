@@ -1,0 +1,11 @@
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\bin\Debug\net8.0\SmartMarketPlace.Models.deps.json
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\bin\Debug\net8.0\SmartMarketPlace.Models.dll
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\bin\Debug\net8.0\SmartMarketPlace.Models.pdb
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.AssemblyInfoInputs.cache
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.AssemblyInfo.cs
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.csproj.CoreCompileInputs.cache
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.dll
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\refint\SmartMarketPlace.Models.dll
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.pdb
+c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.Models\obj\Debug\net8.0\ref\SmartMarketPlace.Models.dll

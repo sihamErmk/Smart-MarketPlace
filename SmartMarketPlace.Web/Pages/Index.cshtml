@@ -1,0 +1,390 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Smart MarketPlace - Générateur de Missions";
+}
+
+<style>
+    :root {
+        --primary: #3f51b5;
+        --primary-light: #757de8;
+        --primary-dark: #002984;
+        --secondary: #ff9800;
+        --secondary-light: #ffc947;
+        --secondary-dark: #c66900;
+        --text-on-primary: #ffffff;
+        --text-on-secondary: #000000;
+        --background: #f5f5f5;
+        --card-bg: #ffffff;
+        --border-radius: 8px;
+        --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    body {
+        background-color: var(--background);
+        font-family: 'Roboto', sans-serif;
+    }
+    
+    .card {
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        border: none;
+    }
+    
+    .card-header {
+        background-color: var(--primary);
+        color: var(--text-on-primary);
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+    }
+    
+    .btn-primary {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
+    
+    .btn-primary:hover {
+        background-color: var(--primary-dark);
+        border-color: var(--primary-dark);
+    }
+    
+    .btn-outline-secondary {
+        color: var(--secondary);
+        border-color: var(--secondary);
+    }
+    
+    .btn-outline-secondary:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: var(--text-on-secondary);
+    }
+    
+    .badge {
+        background-color: var(--secondary) !important;
+        color: var(--text-on-secondary);
+        font-weight: 500;
+        padding: 0.5em 0.8em;
+    }
+    
+    .markdown-content {
+        line-height: 1.6;
+    }
+    
+    .markdown-content h2 {
+        color: var(--primary);
+        font-size: 1.4rem;
+        margin-top: 1.5rem;
+    }
+    
+    .markdown-content ul {
+        padding-left: 1.5rem;
+    }
+    
+    .table th {
+        color: var(--primary);
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12 text-center mb-4">
+            <h1 class="display-4">AI Job Mission Generator</h1>
+            <p class="lead">Générez des missions freelance détaillées avec un minimum d'informations</p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Générer une Mission</h5>
+                </div>
+                <div class="card-body">
+                    <form id="missionForm">
+                        <div class="mb-3">
+                            <label for="prompt" class="form-label">Entrez les détails de la mission dans n'importe quelle langue</label>
+                            <textarea class="form-control" id="prompt" rows="4" placeholder="Exemple: Développeur React avec expertise en TypeScript, budget 8000, city Paris, country France" required></textarea>
+                            <small class="form-text text-muted">Incluez des mots-clés comme: technologie, budget, ville, pays pour de meilleurs résultats</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="language" class="form-label">Mode de Langue</label>
+                            <select class="form-select" id="language">
+                                <option value="auto" selected>Détection automatique</option>
+                                <option value="french">Forcer le français</option>
+                                <option value="english">Forcer l'anglais</option>
+                                <option value="arabic">Forcer l'arabe</option>
+                                <option value="spanish">Forcer l'espagnol</option>
+                            </select>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary" id="generateBtn">Générer la Mission</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10">
+            <div id="loadingIndicator" class="text-center d-none">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Chargement...</span>
+                </div>
+                <p class="mt-2">Génération de la mission en cours... Cela peut prendre un moment.</p>
+            </div>
+            <div id="resultContainer" class="d-none">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 id="missionTitle">Mission</h5>
+                        <button class="btn btn-sm btn-outline-secondary" id="copyJsonBtn">Copier JSON</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 id="descriptionLabel">Description</h6>
+                                <div id="missionDescription" class="markdown-content mb-4"></div>
+                                
+                                <h6 id="expertiseLabel">Expertises Requises</h6>
+                                <div id="requiredExpertise" class="mb-4"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6 id="detailsLabel">Détails de la Mission</h6>
+                                        <table class="table table-sm">
+                                            <tbody>
+                                                <tr>
+                                                    <th id="positionLabel">Poste</th>
+                                                    <td id="position"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th id="locationLabel">Lieu</th>
+                                                    <td id="location"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th id="workModeLabel">Mode de Travail</th>
+                                                    <td id="workMode"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th id="durationLabel">Durée</th>
+                                                    <td id="duration"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th id="experienceLabel">Expérience</th>
+                                                    <td id="experience"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th id="contractTypeLabel">Type de Contrat</th>
+                                                    <td id="contractType"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th id="dailyRateLabel">Taux Journalier</th>
+                                                    <td id="dailyRate"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th id="domainLabel">Domaine</th>
+                                                    <td id="domain"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="errorContainer" class="alert alert-danger mt-3 d-none">
+                <h5>Erreur</h5>
+                <p id="errorMessage"></p>
+                <div id="rawErrorDetails" class="mt-2 d-none">
+                    <hr>
+                    <h6>Détails Techniques</h6>
+                    <pre id="rawErrorContent" class="bg-light p-2" style="max-height: 200px; overflow: auto;"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const apiUrl = '@Model.ApiBaseUrl/api/JobMission/generate';
+            let generatedJson = null;
+            
+            // Default UI labels in French
+            const defaultLabels = {
+                description: "Description",
+                expertise: "Expertises Requises",
+                details: "Détails de la Mission",
+                position: "Poste",
+                location: "Lieu",
+                workMode: "Mode de Travail",
+                duration: "Durée",
+                experience: "Expérience",
+                contractType: "Type de Contrat",
+                dailyRate: "Taux Journalier",
+                domain: "Domaine"
+            };
+            
+            // Update UI labels based on response
+            function updateUILabels(labels) {
+                const uiLabels = labels || defaultLabels;
+                
+                document.getElementById('descriptionLabel').textContent = uiLabels.description || defaultLabels.description;
+                document.getElementById('expertiseLabel').textContent = uiLabels.expertise || defaultLabels.expertise;
+                document.getElementById('detailsLabel').textContent = uiLabels.details || defaultLabels.details;
+                document.getElementById('positionLabel').textContent = uiLabels.position || defaultLabels.position;
+                document.getElementById('locationLabel').textContent = uiLabels.location || defaultLabels.location;
+                document.getElementById('workModeLabel').textContent = uiLabels.workMode || defaultLabels.workMode;
+                document.getElementById('durationLabel').textContent = uiLabels.duration || defaultLabels.duration;
+                document.getElementById('experienceLabel').textContent = uiLabels.experience || defaultLabels.experience;
+                document.getElementById('contractTypeLabel').textContent = uiLabels.contractType || defaultLabels.contractType;
+                document.getElementById('dailyRateLabel').textContent = uiLabels.dailyRate || defaultLabels.dailyRate;
+                document.getElementById('domainLabel').textContent = uiLabels.domain || defaultLabels.domain;
+            }
+            
+            // Set default French labels on page load
+            updateUILabels(defaultLabels);
+            
+            document.getElementById('missionForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const prompt = document.getElementById('prompt').value;
+                const language = document.getElementById('language').value;
+                
+                if (!prompt) {
+                    showError('Veuillez entrer les détails de la mission');
+                    return;
+                }
+                
+                // Show loading indicator
+                document.getElementById('loadingIndicator').classList.remove('d-none');
+                document.getElementById('resultContainer').classList.add('d-none');
+                document.getElementById('errorContainer').classList.add('d-none');
+                
+                try {
+                    console.log('Sending request to:', apiUrl);
+                    console.log('Request payload:', { prompt, language });
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            prompt: prompt,
+                            language: language
+                        })
+                    });
+                    
+                    console.log('Response status:', response.status);
+                    const data = await response.json();
+                    console.log('Response data:', data);
+                    
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Échec de la génération de la mission');
+                    }
+                    
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    
+                    generatedJson = data;
+                    
+                    // Update UI labels from response or keep French defaults
+                    if (language === 'french' || language === 'auto') {
+                        updateUILabels(defaultLabels);
+                    } else {
+                        updateUILabels(data.uiLabels);
+                    }
+                    
+                    // Display the mission
+                    displayMission(data);
+                } catch (error) {
+                    console.error('Error:', error);
+                    showError(error.message || 'Échec de la connexion à l\'API. Assurez-vous que les applications API et Web sont en cours d\'exécution.');
+                } finally {
+                    document.getElementById('loadingIndicator').classList.add('d-none');
+                }
+            });
+            
+            document.getElementById('copyJsonBtn').addEventListener('click', function() {
+                if (generatedJson) {
+                    navigator.clipboard.writeText(JSON.stringify(generatedJson, null, 2))
+                        .then(() => {
+                            const btn = this;
+                            const originalText = btn.textContent;
+                            btn.textContent = 'Copié!';
+                            setTimeout(() => {
+                                btn.textContent = originalText;
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error('Failed to copy: ', err);
+                        });
+                }
+            });
+            
+            function displayMission(mission) {
+                // Display title
+                document.getElementById('missionTitle').textContent = mission.title || 'Mission';
+                
+                // Display description using marked.js for markdown rendering
+                const descriptionEl = document.getElementById('missionDescription');
+                descriptionEl.innerHTML = mission.description ? marked.parse(mission.description) : 'Aucune description fournie';
+                
+                // Display expertise tags
+                const expertiseEl = document.getElementById('requiredExpertise');
+                expertiseEl.innerHTML = '';
+                if (mission.requiredExpertises && mission.requiredExpertises.length > 0) {
+                    mission.requiredExpertises.forEach(skill => {
+                        const badge = document.createElement('span');
+                        badge.className = 'badge me-2 mb-2';
+                        badge.textContent = skill;
+                        expertiseEl.appendChild(badge);
+                    });
+                } else {
+                    expertiseEl.textContent = 'Aucune expertise spécifiée';
+                }
+                
+                // Display mission details
+                document.getElementById('position').textContent = mission.position || 'Non spécifié';
+                document.getElementById('location').textContent = mission.city && mission.country ? 
+                    `${mission.city}, ${mission.country}` : 'Non spécifié';
+                document.getElementById('workMode').textContent = mission.workMode || 'Non spécifié';
+                document.getElementById('duration').textContent = mission.duration && mission.durationType ? 
+                    `${mission.duration} ${mission.durationType}` : 'Non spécifié';
+                document.getElementById('experience').textContent = mission.experienceYear || 'Non spécifié';
+                document.getElementById('contractType').textContent = mission.contractType || 'Non spécifié';
+                document.getElementById('dailyRate').textContent = mission.estimatedDailyRate ? 
+                    `${mission.estimatedDailyRate} EUR` : 'Non spécifié';
+                document.getElementById('domain').textContent = mission.domain || 'Non spécifié';
+                
+                // Show result container
+                document.getElementById('resultContainer').classList.remove('d-none');
+            }
+            
+            function showError(message, rawDetails = null) {
+                const errorContainer = document.getElementById('errorContainer');
+                document.getElementById('errorMessage').textContent = message;
+                
+                const rawErrorDetails = document.getElementById('rawErrorDetails');
+                const rawErrorContent = document.getElementById('rawErrorContent');
+                
+                if (rawDetails) {
+                    rawErrorContent.textContent = typeof rawDetails === 'object' ? 
+                        JSON.stringify(rawDetails, null, 2) : rawDetails;
+                    rawErrorDetails.classList.remove('d-none');
+                } else {
+                    rawErrorDetails.classList.add('d-none');
+                }
+                
+                errorContainer.classList.remove('d-none');
+            }
+        });
+    </script>
+}
