@@ -44,7 +44,7 @@ Smart MarketPlace utilise le modèle Qwen2.5 via l'API OpenRouter pour générer
 
 1. **Cloner le dépôt** (ou télécharger et extraire)
    ```
-   git clone https://github.com/votrenomdutilisateur/smart-marketplace.git
+   git clone https://github.com/OumaimaBoughdad/Smart-marketplace.git
    cd smart-marketplace
    ```
 
