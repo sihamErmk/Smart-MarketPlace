@@ -12,7 +12,9 @@ Smart MarketPlace utilise le modèle Qwen2.5 via l'API OpenRouter pour générer
 
 ## Architecture
 
-![Diagramme d'Architecture](https://mermaid.ink/img/pako:eNp1kc1uwjAQhF9l5XOqFpJAoFKlHnqoVKkHDr1YzgZWJHZkO0AR8u5dJ6FQqL3Yzs63M7uWB6UdIkeuXYNPaDwqC09ofFCdUg3UfsCuQVvY4Qs2Gg3YgvZQGdVBpTXCGlQDW9AeXcVfYZJlcJfnMJ3NZ3CfwHSRwHyRzuEhgVmawiyJYZokGRTxJIZpnEKRxhkUWZJBkc9vYZHfPcI8zVMo0jRZQpHlGRTZYnkDxXKxgGKZ5VDkWZpDkRfzHIrF3WKZLJcZFMt8cQ_FMkn-Wd7QNbgDOvCqRQcbr1qlHWzRNKqFV-_Qqc7DRrUOXnr0ym3Bq6bV2Cl4U9iiV7pR9gSHM_oPDvVJu5PFz8Mh-Hb4Qxg5Yx1qNJYLHoUhD8MRD4IwCEY8nITRaMzDMY-iKJjxcBJGk4hHAY_CkLPeN3DdmXE?type=png)
+![Diagramme d'Architecture]
+
+![Image](https://github.com/user-attachments/assets/ab122462-6d0c-4792-a329-1a0918e48486)
 
 ### Composants :
 
