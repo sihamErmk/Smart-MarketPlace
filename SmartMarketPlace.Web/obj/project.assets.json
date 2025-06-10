@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Smart MarketPlace\\SmartMarketPlace.Web\\SmartMarketPlace.Web.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\LSI2TP\\ZILI\\Smart-marketplace\\SmartMarketPlace.Web\\SmartMarketPlace.Web.csproj",
       "projectName": "SmartMarketPlace.Web",
-      "projectPath": "C:\\Users\\HP\\Desktop\\Smart MarketPlace\\SmartMarketPlace.Web\\SmartMarketPlace.Web.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\LSI2TP\\ZILI\\Smart-marketplace\\SmartMarketPlace.Web\\SmartMarketPlace.Web.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\Smart MarketPlace\\SmartMarketPlace.Web\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\LSI2TP\\ZILI\\Smart-marketplace\\SmartMarketPlace.Web\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -59,8 +59,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\HP\\Desktop\\Smart MarketPlace\\SmartMarketPlace.Models\\SmartMarketPlace.Models.csproj": {
-              "projectPath": "C:\\Users\\HP\\Desktop\\Smart MarketPlace\\SmartMarketPlace.Models\\SmartMarketPlace.Models.csproj"
+            "C:\\Users\\HP\\Desktop\\LSI2TP\\ZILI\\Smart-marketplace\\SmartMarketPlace.Models\\SmartMarketPlace.Models.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\LSI2TP\\ZILI\\Smart-marketplace\\SmartMarketPlace.Models\\SmartMarketPlace.Models.csproj"
             }
           }
         }
@@ -99,7 +99,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

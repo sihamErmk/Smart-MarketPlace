@@ -37,3 +37,42 @@ c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\Smar
 c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.genruntimeconfig.cache
 c:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\ref\SmartMarketPlace.API.dll
 C:\Users\HP\Desktop\Smart MarketPlace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.sourcelink.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\appsettings.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\SmartMarketPlace.API.staticwebassets.endpoints.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\SmartMarketPlace.API.exe
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\SmartMarketPlace.API.deps.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\SmartMarketPlace.API.runtimeconfig.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\SmartMarketPlace.API.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\SmartMarketPlace.API.pdb
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\SmartMarketPlace.Models.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\bin\Debug\net8.0\SmartMarketPlace.Models.pdb
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.AssemblyInfo.cs
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.sourcelink.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\scopedcss\bundle\SmartMarketPlace.API.styles.css
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets\msbuild.SmartMarketPlace.API.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets\msbuild.SmartMarketPlace.API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets\msbuild.build.SmartMarketPlace.API.props
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.SmartMarketPlace.API.props
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.SmartMarketPlace.API.props
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMar.3DD141E7.Up2Date
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\refint\SmartMarketPlace.API.dll
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.pdb
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\SmartMarketPlace.API.genruntimeconfig.cache
+C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.API\obj\Debug\net8.0\ref\SmartMarketPlace.API.dll

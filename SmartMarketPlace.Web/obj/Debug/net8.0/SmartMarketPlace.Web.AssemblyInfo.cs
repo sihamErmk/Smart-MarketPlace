@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartMarketPlace.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d5bbc39630fd5b12dda747c6efbbc65902975e0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+301968dc9138267178a6ef785cfb2dd17cd97de2")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartMarketPlace.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartMarketPlace.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
