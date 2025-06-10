@@ -102,12 +102,12 @@ Smart MarketPlace utilise le modèle Qwen2.5 via l'API OpenRouter pour générer
 
 ## Exemple d'Utilisation avec les captures d'écran
 
-![Image](<img width="959" alt="mission1" src="https://github.com/user-attachments/assets/504cc63e-eded-45d9-968e-51fdb0105ceb" />)
+![Image](Images\mission1.png)
 
 Où vous pouvez entrer une description pour générer une mission :
 
 
-![Image]()
+![Image](Images\MISSION2.png)
 
 Choisissez la langue que vous préférez ou bien le système détecte la langue d'entrée et la marque comme langue d'affichage.
 Et voilà notre mission :
