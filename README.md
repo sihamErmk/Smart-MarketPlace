@@ -102,28 +102,28 @@ Smart MarketPlace utilise le modèle Qwen2.5 via l'API OpenRouter pour générer
 
 ## Exemple d'Utilisation avec les captures d'écran
 
-![Image](Images\mission1.png)
+![Image](Images/mission1.png)
 
 Où vous pouvez entrer une description pour générer une mission :
 
 
-![Image](Images\MISSION2.png)
+![Image](Images/MISSION2.png)
 
 Choisissez la langue que vous préférez ou bien le système détecte la langue d'entrée et la marque comme langue d'affichage.
 Et voilà notre mission :
 
 
-![Image](Images\MISSION3.png)
+![Image](Images/MISSION3.png)
 
 Où vous pouvez aussi copier la réponse en format JSON.
 
-Un autre exemple en arabe :
+Un autre exemple en arabe : 
 
-![Image](Images\mission4.png)
+![Image](Images/mission4.png)
 
 la sortie : 
 
-![Image](Images\mission5.png)
+![Image](Images/mission5.png)
 
 
 ## Exemple de Sortie
