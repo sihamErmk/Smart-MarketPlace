@@ -107,11 +107,6 @@
         animation: pulse 2s infinite;
     }
     
-    @keyframes pulse {
-        0%, 100% { opacity: 0.6; }
-        50% { opacity: 1; }
-    }
-    
     .btn-primary {
         background: var(--gradient-primary);
         border: none;
@@ -289,11 +284,6 @@
         animation: spin 1s linear infinite, professionalGlow 2s infinite alternate;
     }
     
-    @keyframes professionalGlow {
-        from { filter: drop-shadow(0 0 5px var(--accent)); }
-        to { filter: drop-shadow(0 0 15px var(--accent)); }
-    }
-    
     .alert-danger {
         background: rgba(220, 53, 69, 0.2);
         border: 2px solid rgba(220, 53, 69, 0.5);
@@ -357,9 +347,24 @@
         animation: fadeInOut 2s infinite;
     }
     
+    /* Keyframes definitions */
+    @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+    }
+    
+    @keyframes professionalGlow {
+        from { filter: drop-shadow(0 0 5px var(--accent)); }
+        to { filter: drop-shadow(0 0 15px var(--accent)); }
+    }
+    
     @keyframes fadeInOut {
         0%, 100% { opacity: 0.7; }
         50% { opacity: 1; }
+    }
+    
+    @keyframes spin {
+        to { transform: rotate(360deg); }
     }
 </style>
 
