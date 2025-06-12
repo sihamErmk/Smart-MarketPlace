@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "eaDBOzD5Sro=",
+  "dgSpecHash": "ioLKf4jQhVY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Desktop\\LSI2TP\\ZILI\\Smart-marketplace\\SmartMarketPlace.Web\\SmartMarketPlace.Web.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Dell PC\\Downloads\\Smart-marketplace\\SmartMarketPlace.Web\\SmartMarketPlace.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dell PC\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.16\\microsoft.netcore.app.ref.8.0.16.nupkg.sha512",
+    "C:\\Users\\Dell PC\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.16\\microsoft.windowsdesktop.app.ref.8.0.16.nupkg.sha512",
+    "C:\\Users\\Dell PC\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.16\\microsoft.aspnetcore.app.ref.8.0.16.nupkg.sha512",
+    "C:\\Users\\Dell PC\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.16\\microsoft.netcore.app.host.win-x64.8.0.16.nupkg.sha512"
+  ],
   "logs": []
 }

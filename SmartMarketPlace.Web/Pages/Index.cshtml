@@ -1,190 +1,258 @@
 @page
 @model IndexModel
 @{
-    ViewData["Title"] = "Smart MarketPlace - Générateur de Missions";
+    ViewData["Title"] = "Freelance Fusion - Mission Creator";
 }
 
 <style>
     :root {
-        --primary: #006d77; /* Deep teal for primary elements */
-        --primary-light: #83c5be; /* Lighter teal for hover states */
-        --primary-dark: #004d55; /* Darker teal for depth */
-        --secondary: #ff6f61; /* Coral for accents */
-        --secondary-light: #ff9b8e; /* Lighter coral for hover */
-        --secondary-dark: #cc4b3e; /* Darker coral for contrast */
+        --primary: #6b46c1; /* Vibrant purple for primary elements */
+        --primary-light: #a78bfa; /* Lighter purple for hover states */
+        --primary-dark: #4c2c92; /* Darker purple for depth */
+        --secondary: #f472b6; /* Bright pink for accents */
+        --secondary-light: #f9a8d4; /* Lighter pink for hover */
+        --secondary-dark: #db2777; /* Darker pink for contrast */
         --text-on-primary: #ffffff; /* White text on primary backgrounds */
-        --text-on-secondary: #1a1a1a; /* Dark text on secondary backgrounds */
-        --background: #f8fafc; /* Soft off-white background */
-        --card-bg: #ffffff; /* White card background */
-        --border-radius: 12px; /* Slightly larger radius for modern look */
-        --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* Softer, larger shadow */
-        --text-muted: #5f6a7a; /* Muted text for secondary info */
+        --text-on-secondary: #1f2937; /* Dark text on secondary backgrounds */
+        --background: #f3e8ff; /* Soft lavender background */
+        --card-bg: #ffffff; /* White card background with subtle tint */
+        --gradient-bg: linear-gradient(135deg, #6b46c1, #f472b6); /* Purple-pink gradient */
+        --border-radius: 16px; /* Larger, smoother radius for modern look */
+        --box-shadow: 0 8px 24px rgba(107, 70, 193, 0.15); /* Purple-tinted shadow */
+        --neumorphic-shadow: 8px 8px 16px rgba(107, 70, 193, 0.1), 
+                            -8px -8px 16px rgba(255, 255, 255, 0.8); /* Neumorphic effect */
+        --text-muted: #6b7280; /* Neutral gray for secondary text */
     }
-    
+
     body {
-        background-color: var(--background);
-        font-family: 'Inter', sans-serif; /* Modern, clean font */
-        color: #1a1a1a; /* Dark charcoal for text */
+        background: var(--background);
+        font-family: 'Inter', sans-serif;
+        color: #1f2937;
+        overflow-x: hidden;
+        position: relative;
     }
-    
+
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-bg);
+        opacity: 0.05;
+        z-index: -1;
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+    }
+
     .card {
+        background: var(--card-bg);
         border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        border: none;
-        transition: transform 0.2s ease; /* Subtle hover animation */
+        box-shadow: var(--neumorphic-shadow);
+        border: 1px solid rgba(167, 139, 250, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        padding: 1.75rem; /* Moved padding from header to card */
     }
-    
+
     .card:hover {
-        transform: translateY(-4px); /* Lift effect on hover */
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px rgba(107, 70, 193, 0.2);
     }
-    
-    .card-header {
-        background-color: var(--primary);
-        color: var(--text-on-primary);
-        border-top-left-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-        padding: 1.5rem; /* More padding for a premium feel */
-    }
-    
+
     .btn-primary {
-        background-color: var(--primary);
-        border-color: var(--primary);
-        border-radius: 6px;
-        font-weight: 500;
-        padding: 0.75rem 1.5rem; /* Larger buttons */
-        transition: all 0.3s ease;
+        background: var(--gradient-bg);
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        padding: 0.85rem 1.75rem;
+        color: var(--text-on-primary);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
     }
-    
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+    }
+
     .btn-primary:hover {
-        background-color: var(--primary-dark);
-        border-color: var(--primary-dark);
-        transform: translateY(-2px); /* Subtle lift on hover */
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(107, 70, 193, 0.3);
     }
-    
+
+    .btn-primary:hover::before {
+        left: 100%;
+    }
+
     .btn-outline-secondary {
         color: var(--secondary);
         border-color: var(--secondary);
-        border-radius: 6px;
-        font-weight: 500;
+        border-radius: 8px;
+        font-weight: 600;
         transition: all 0.3s ease;
     }
-    
+
     .btn-outline-secondary:hover {
-        background-color: var(--secondary);
-        border-color: var(--secondary);
+        background: var(--secondary-light);
+        border-color: var(--secondary-light);
         color: var(--text-on-secondary);
-        transform: translateY(-2px);
+        transform: translateY(-3px);
     }
-    
+
     .badge {
-        background-color: var(--secondary) !important;
+        background: var(--secondary-light) !important;
         color: var(--text-on-secondary);
-        font-weight: 500;
-        padding: 0.6em 1em;
+        font-weight: 600;
+        padding: 0.6em 1.2em;
         border-radius: 6px;
         margin-right: 0.5rem;
         margin-bottom: 0.5rem;
-        display: inline-flex;
-        align-items: center;
+        transition: transform 0.2s ease;
     }
-    
+
+    .badge:hover {
+        transform: scale(1.05);
+    }
+
     .markdown-content {
-        line-height: 1.8; /* Improved readability */
+        line-height: 1.9;
         color: var(--text-muted);
     }
-    
+
     .markdown-content h2 {
         color: var(--primary-dark);
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         margin-top: 2rem;
-        font-weight: 600;
+        font-weight: 700;
     }
-    
+
     .markdown-content ul {
         padding-left: 1.8rem;
         margin-bottom: 1.5rem;
     }
-    
+
     .table th {
         color: var(--primary-dark);
         font-weight: 600;
         border-bottom: 2px solid var(--primary-light);
     }
-    
+
     .table td {
         color: var(--text-muted);
-        border-bottom: 1px solid #e2e8f0; /* Subtle borders */
+        border-bottom: 1px solid rgba(167, 139, 250, 0.1);
     }
-    
+
     .form-control, .form-select {
-        border-color: #d1d5db; /* Neutral border */
-        border-radius: 6px;
-        padding: 0.75rem;
-        transition: border-color 0.2s ease;
+        background: #faf5ff;
+        border-color: rgba(107, 70, 193, 0.2);
+        border-radius: 8px;
+        padding: 0.85rem;
+        transition: all 0.3s ease;
     }
-    
+
     .form-control:focus, .form-select:focus {
         border-color: var(--primary-light);
-        box-shadow: 0 0 0 3px rgba(131, 197, 190, 0.2); /* Subtle focus ring */
+        box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2);
+        background: #ffffff;
     }
-    
+
     .form-label {
         color: var(--primary-dark);
-        font-weight: 500;
+        font-weight: 600;
     }
-    
+
     .form-text {
         color: var(--text-muted);
     }
-    
+
     .alert-danger {
-        background-color: #fef2f2; /* Soft red for errors */
-        border-color: #f87171;
-        color: #b91c1c;
-        border-radius: 6px;
+        background: #fef2f2;
+        border-color: var(--secondary-dark);
+        color: var(--secondary-dark);
+        border-radius: 8px;
+        box-shadow: var(--box-shadow);
     }
-    
+
     .spinner-border {
         border-color: var(--primary-light);
         border-right-color: transparent;
+    }
+
+    h1.display-4 {
+        background: var(--gradient-bg);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: 800;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 2.5rem; /* Slightly smaller for a unique look */
+    }
+
+    h1.display-4::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px; /* Slightly wider underline */
+        height: 4px;
+        background: var(--gradient-bg);
+        border-radius: 2px;
+    }
+
+    .lead.text-muted {
+        color: var(--text-muted) !important;
+        font-size: 1.15rem; /* Slightly smaller for distinction */
+        font-weight: 400;
+        max-width: 600px; /* Constrain width for better readability */
+        margin: 0 auto;
     }
 </style>
 
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12 text-center mb-5">
-            <h1 class="display-4 fw-bold">AI Job Mission Generator</h1>
-            <p class="lead text-muted">Générez des missions freelance détaillées avec un minimum d'informations</p>
+            <h1 class="display-4 fw-bold">Freelance Fusion - Mission Creator</h1>
+            <p class="lead text-muted">Créez des missions freelance sur mesure avec des détails précis en quelques clics</p>
         </div>
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10"> <!-- Widened form for a different layout -->
             <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">Générer une Mission</h5>
-                </div>
                 <div class="card-body">
                     <form id="missionForm">
                         <div class="mb-4">
-                            <label for="prompt" class="form-label">Entrez les détails de la mission dans n'importe quelle langue</label>
-                            <textarea class="form-control" id="prompt" rows="4" placeholder="Exemple: Développeur React avec expertise en TypeScript, budget 8000, city Paris, country France" required></textarea>
-                            <small class="form-text">Incluez des mots-clés comme: technologie, budget, ville, pays pour de meilleurs résultats</small>
+                            <label for="prompt" class="form-label">Décrivez votre mission idéale</label>
+                            <textarea class="form-control" id="prompt" rows="5" placeholder="Exemple: Développeur Full Stack maîtrisant Node.js et Vue.js, budget 10000, ville Lyon, pays France" required></textarea>
+                            <small class="form-text">Utilisez des mots-clés comme: technologie, budget, ville, pays pour optimiser les résultats</small>
                         </div>
                         <div class="mb-4">
-                            <label for="
-
-language" class="form-label">Mode de Langue</label>
+                            <label for="language" class="form-label">Langue de la Mission</label>
                             <select class="form-select" id="language">
-                                <option value="auto" selected>Détection automatique</option>
-                                <option value="french">Forcer le français</option>
-                                <option value="english">Forcer l'anglais</option>
-                                <option value="arabic">Forcer l'arabe</option>
-                                <option value="spanish">Forcer l'espagnol</option>
+                                <option value="auto" selected>Auto-détection</option>
+                                <option value="french">Français</option>
+                                <option value="english">Anglais</option>
+                                <option value="arabic">Arabe</option>
+                                <option value="spanish">Espagnol</option>
                             </select>
                         </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary" id="generateBtn">Générer la Mission</button>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="submit" class="btn btn-primary" id="generateBtn">Créer la Mission</button>
                         </div>
                     </form>
                 </div>
@@ -198,35 +266,35 @@ language" class="form-label">Mode de Langue</label>
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Chargement...</span>
                 </div>
-                <p class="mt-3 text-muted">Génération de la mission en cours... Cela peut prendre un moment.</p>
+                <p class="mt-3 text-muted">Création de la mission en cours... Veuillez patienter.</p>
             </div>
             <div id="resultContainer" class="d-none">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between align-items-center">
-                        <h5 id="missionTitle" class="mb-0">Mission</h5>
-                        <button class="btn btn-sm btn-outline-secondary" id="copyJsonBtn">Copier JSON</button>
-                    </div>
                     <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 id="missionTitle" class="mb-0">Mission Générée</h5>
+                            <button class="btn btn-sm btn-outline-secondary" id="copyJsonBtn">Copier JSON</button>
+                        </div>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-7"> <!-- Adjusted column width -->
                                 <h6 id="descriptionLabel" class="fw-semibold">Description</h6>
                                 <div id="missionDescription" class="markdown-content mb-4"></div>
                                 
-                                <h6 id="expertiseLabel" class="fw-semibold">Expertises Requises</h6>
+                                <h6 id="expertiseLabel" class="fw-semibold">Compétences Requises</h6>
                                 <div id="requiredExpertise" class="mb-4"></div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-5"> <!-- Adjusted column width -->
                                 <div class="card">
                                     <div class="card-body">
-                                        <h6 id="detailsLabel" class="fw-semibold">Détails de la Mission</h6>
+                                        <h6 id="detailsLabel" class="fw-semibold">Informations Clés</h6>
                                         <table class="table table-sm">
                                             <tbody>
                                                 <tr>
-                                                    <th id="positionLabel">Poste</th>
+                                                    <th id="positionLabel">Rôle</th>
                                                     <td id="position"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th id="locationLabel">Lieu</th>
+                                                    <th id="locationLabel">Localisation</th>
                                                     <td id="location"></td>
                                                 </tr>
                                                 <tr>
@@ -246,11 +314,11 @@ language" class="form-label">Mode de Langue</label>
                                                     <td id="contractType"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th id="dailyRateLabel">Taux Journalier</th>
+                                                    <th id="dailyRateLabel">TJM</th>
                                                     <td id="dailyRate"></td>
                                                 </tr>
                                                 <tr>
-                                                    <th id="domainLabel">Domaine</th>
+                                                    <th id="domainLabel">Secteur</th>
                                                     <td id="domain"></td>
                                                 </tr>
                                             </tbody>
@@ -282,40 +350,32 @@ language" class="form-label">Mode de Langue</label>
             const apiUrl = '@Model.ApiBaseUrl/api/JobMission/generate';
             let generatedJson = null;
             
-            // Default UI labels in French
             const defaultLabels = {
                 description: "Description",
-                expertise: "Expertises Requises",
-                details: "Détails de la Mission",
-                position: "Poste",
-                location: "Lieu",
+                expertise: "Compétences Requises",
+                details: "Informations Clés",
+                position: "Rôle",
+                location: "Localisation",
                 workMode: "Mode de Travail",
                 duration: "Durée",
                 experience: "Expérience",
                 contractType: "Type de Contrat",
-                dailyRate: "Taux Journalier",
-                domain: "Domaine"
+                dailyRate: "TJM",
+                domain: "Secteur"
             };
             
-            // Language-specific placeholders
             const placeholders = {
-                french: "Exemple: Développeur React avec expertise en TypeScript, budget 8000, city Paris, country France",
-                english: "Example: Java developer with expertise in Spring Boot, budget 10000, city London, country UK",
-                arabic: "مثال: مطور جافا مع خبرة في سبرينج بوت، ميزانية 10000، المدينة الرياض، البلد السعودية",
-                spanish: "Ejemplo: Desarrollador Java con experiencia en Spring Boot, presupuesto 10000, ciudad Madrid, país España"
+                french: "Exemple: Développeur Full Stack maîtrisant Node.js et Vue.js, budget 10000, ville Lyon, pays France",
+                english: "Example: Full Stack Developer skilled in Node.js and Vue.js, budget 10000, city London, country UK",
+                arabic: "مثال: مطور ويب كامل مع خبرة في Node.js وVue.js، ميزانية 10000، المدينة الرياض، البلد السعودية",
+                spanish: "Ejemplo: Desarrollador Full Stack con experiencia en Node.js y Vue.js, presupuesto 10000, ciudad Madrid, país España"
             };
             
-            // Update placeholder based on selected language
             document.getElementById('language').addEventListener('change', function() {
                 const selectedLanguage = this.value;
-                if (selectedLanguage !== 'auto') {
-                    document.getElementById('prompt').placeholder = placeholders[selectedLanguage] || placeholders.french;
-                } else {
-                    document.getElementById('prompt').placeholder = placeholders.french;
-                }
+                document.getElementById('prompt').placeholder = placeholders[selectedLanguage] || placeholders.french;
             });
             
-            // Update UI labels based on response
             function updateUILabels(labels, detectedLanguage) {
                 const uiLabels = labels || defaultLabels;
                 
@@ -331,7 +391,6 @@ language" class="form-label">Mode de Langue</label>
                 document.getElementById('dailyRateLabel').textContent = uiLabels.dailyRate || defaultLabels.dailyRate;
                 document.getElementById('domainLabel').textContent = uiLabels.domain || defaultLabels.domain;
                 
-                // Update language dropdown to match detected language
                 if (detectedLanguage) {
                     const languageSelect = document.getElementById('language');
                     for (let i = 0; i < languageSelect.options.length; i++) {
@@ -343,7 +402,6 @@ language" class="form-label">Mode de Langue</label>
                 }
             }
             
-            // Set default French labels on page load
             updateUILabels(defaultLabels);
             
             document.getElementById('missionForm').addEventListener('submit', async function(e) {
@@ -353,11 +411,10 @@ language" class="form-label">Mode de Langue</label>
                 const language = document.getElementById('language').value;
                 
                 if (!prompt) {
-                    showError('Veuillez entrer les détails de la mission');
+                    showError('Veuillez décrire la mission');
                     return;
                 }
                 
-                // Show loading indicator
                 document.getElementById('loadingIndicator').classList.remove('d-none');
                 document.getElementById('resultContainer').classList.add('d-none');
                 document.getElementById('errorContainer').classList.add('d-none');
@@ -382,7 +439,7 @@ language" class="form-label">Mode de Langue</label>
                     console.log('Response data:', data);
                     
                     if (!response.ok) {
-                        throw new Error(data.error || 'Échec de la génération de la mission');
+                        throw new Error(data.error || 'Échec de la création de la mission');
                     }
                     
                     if (data.error) {
@@ -391,14 +448,12 @@ language" class="form-label">Mode de Langue</label>
                     
                     generatedJson = data;
                     
-                    // Update UI labels from response
                     updateUILabels(data.uiLabels, data.detectedLanguage);
                     
-                    // Display the mission
                     displayMission(data);
                 } catch (error) {
                     console.error('Error:', error);
-                    showError(error.message || 'Échec de la connexion à l\'API. Assurez-vous que les applications API et Web sont en cours d\'exécution.');
+                    showError(error.message || 'Échec de la connexion à l\'API. Vérifiez que l\'API est en cours d\'exécution.');
                 } finally {
                     document.getElementById('loadingIndicator').classList.add('d-none');
                 }
@@ -410,7 +465,7 @@ language" class="form-label">Mode de Langue</label>
                         .then(() => {
                             const btn = this;
                             const originalText = btn.textContent;
-                            btn.textContent = 'Copié!';
+                            btn.textContent = 'Copié !';
                             setTimeout(() => {
                                 btn.textContent = originalText;
                             }, 2000);
@@ -422,14 +477,11 @@ language" class="form-label">Mode de Langue</label>
             });
             
             function displayMission(mission) {
-                // Display title
-                document.getElementById('missionTitle').textContent = mission.title || 'Mission';
+                document.getElementById('missionTitle').textContent = mission.title || 'Mission Générée';
                 
-                // Display description using marked.js for markdown rendering
                 const descriptionEl = document.getElementById('missionDescription');
                 descriptionEl.innerHTML = mission.description ? marked.parse(mission.description) : 'Aucune description fournie';
                 
-                // Display expertise tags
                 const expertiseEl = document.getElementById('requiredExpertise');
                 expertiseEl.innerHTML = '';
                 if (mission.requiredExpertises && mission.requiredExpertises.length > 0) {
@@ -440,10 +492,9 @@ language" class="form-label">Mode de Langue</label>
                         expertiseEl.appendChild(badge);
                     });
                 } else {
-                    expertiseEl.textContent = 'Aucune expertise spécifiée';
+                    expertiseEl.textContent = 'Aucune compétence spécifiée';
                 }
                 
-                // Display mission details
                 document.getElementById('position').textContent = mission.position || 'Non spécifié';
                 document.getElementById('location').textContent = mission.city && mission.country ? 
                     `${mission.city}, ${mission.country}` : 'Non spécifié';
@@ -456,7 +507,6 @@ language" class="form-label">Mode de Langue</label>
                     `${mission.estimatedDailyRate} EUR` : 'Non spécifié';
                 document.getElementById('domain').textContent = mission.domain || 'Non spécifié';
                 
-                // Show result container
                 document.getElementById('resultContainer').classList.remove('d-none');
             }
             

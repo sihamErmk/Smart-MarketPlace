@@ -22,3 +22,15 @@ C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.Models\obj\De
 C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\refint\SmartMarketPlace.Models.dll
 C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.pdb
 C:\Users\HP\Desktop\LSI2TP\ZILI\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\ref\SmartMarketPlace.Models.dll
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\bin\Debug\net8.0\SmartMarketPlace.Models.deps.json
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\bin\Debug\net8.0\SmartMarketPlace.Models.dll
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\bin\Debug\net8.0\SmartMarketPlace.Models.pdb
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.AssemblyInfoInputs.cache
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.AssemblyInfo.cs
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.csproj.CoreCompileInputs.cache
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.sourcelink.json
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.dll
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\refint\SmartMarketPlace.Models.dll
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\SmartMarketPlace.Models.pdb
+C:\Users\Dell PC\Downloads\Smart-marketplace\SmartMarketPlace.Models\obj\Debug\net8.0\ref\SmartMarketPlace.Models.dll
